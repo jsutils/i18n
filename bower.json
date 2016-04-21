@@ -1,0 +1,26 @@
+{
+  "name": "jsutils-i18n",
+  "version": "0.0.0",
+  "homepage": "https://github.com/jsutils/i18n",
+  "authors": [
+    "Lalit Tanwar <lalit.tanwar07@gmail.com>"
+  ],
+  "main": "jsutils.i18n.js",
+  "keywords": [
+    "localozation",
+    "i18n"
+  ],
+  "dependencies": {
+    "webmodules-foo" : ">=3.0.0",
+    "jsutils-file" :"~0.1.1",
+    "jsutils-tmpl" :"~0.0.2"
+  },
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
