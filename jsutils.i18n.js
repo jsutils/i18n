@@ -9,19 +9,19 @@ define({
         },
         add : function(file){
           if (is.String(file)) {
-    				return fileUtil.getJSON(file).done(function(resp) {
-    					for (var key in resp.map) {
-    						STRINGS[key] = resp.map[key];
-    					}
-    				});
-    			} else {
-    				return $.Deferred(function(dff){
-    					for(var key in file.map) {
-    						STRINGS[key] = file.map[key];
-    					}	
-    					dff.resolve(file);
-    				}).promise();
-    			}
+            return fileUtil.getJSON(file).done(function(resp) {
+              for (var key in resp.map) {
+                STRINGS[key] = resp.map[key];
+              }
+            });
+          } else {
+            return jQuery.Deferred(function(dff){
+              for(var key in file.map) {
+                STRINGS[key] = file.map[key];
+              }	
+              dff.resolve(file);
+            }).promise();
+          }
         },
         get : function (key) {
           var keys = key.split(":");
