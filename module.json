@@ -1,7 +1,7 @@
 {
   "name": "jsutils/i18n",
   "jsutils/i18n": {
-  	"on": ["webmodules/jquery", "webmodules/underscore","jsutils/files"],
+  	"on": ["webmodules/jquery", "webmodules/underscore","jsutils/files","jsutils/resources"],
     "js": [
         "jsutils.i18n.js"
     ]

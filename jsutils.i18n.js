@@ -1,7 +1,7 @@
 define({
     name: "jsutils.i18n",
-    modules: ["jQuery", "jsutils.file", "jsutils.tmpl","JSONPath","JSON"]
-}).as(function(i18n, jQuery, fileUtil, tempUtil,JSONPath,JSON) {
+    modules: ["jQuery", "jsutils.file", "jsutils.tmpl","JSONPath","JSON","jsutils.resources"]
+}).as(function(i18n, jQuery, fileUtil, tempUtil,JSONPath,JSON,RESOURCEUTIL) {
     var STRINGS = {};
     return {
         _instance_: function() {
@@ -23,24 +23,11 @@ define({
                 }).promise();
             }
         },
-        getJSON: function(fileNameJson) {
+        getJSON : function(fileNameJson){
             var self = this;
-            var version = (bootloader && bootloader.config) ?
-                JSONPath("resource.version").load(bootloader.config(), bootloader.config().version) : 0;
-            var fileName = fileNameJson, fileNameKey = "_lang." + fileName;
-            var langMap = localStorage.getItem(fileNameKey);
-            if (langMap) {
-                langMap = JSON.parse(langMap);
-            }
-            if (langMap && langMap.version >= version) {
-                return self.add(langMap);
-            } else {
-                return fileUtil.getJSON(fileNameJson).done(function(resp) {
-                    resp.version = version;
-                    localStorage.setItem(fileNameKey, JSON.stringify(resp));
-                    return self.add(resp);
-                });
-            }
+            return RESOURCEUTIL.getJSON(fileNameJson).done(function(resp){
+                return self.add(resp);
+            });
         },
         get: function(key) {
             if (is.String(key)) {
