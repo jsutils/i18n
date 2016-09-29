@@ -11,13 +11,13 @@ define({
             if (is.String(file)) {
                 return fileUtil.getJSON(file).done(function(resp) {
                     for (var key in resp.map) {
-                        STRINGS[key] = resp.map[key];
+                        STRINGS[key.toLowerCase()] = resp.map[key];
                     }
                 });
             } else {
                 return jQuery.Deferred(function(dff) {
                     for (var key in file.map) {
-                        STRINGS[key] = file.map[key];
+                        STRINGS[key.toLowerCase()] = file.map[key];
                     }
                     dff.resolve(file);
                 }).promise();
@@ -31,6 +31,7 @@ define({
         },
         get: function(key) {
             if (is.String(key)) {
+                key = key.toLowerCase();
                 var keys = key.split(":");
                 var str = STRINGS[keys[0]] || "";
                 for (var i = 1; i < keys.length; i++) {
