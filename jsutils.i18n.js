@@ -1,7 +1,7 @@
 define({
     name: "jsutils.i18n",
-    modules: ["jQuery", "jsutils.file", "jsutils.tmpl","JSONPath","JSON","jsutils.resources"]
-}).as(function(i18n, jQuery, fileUtil, tempUtil,JSONPath,JSON,RESOURCEUTIL) {
+    modules: ["jQuery", "jsutils.file", "jsutils.tmpl", "JSONPath", "JSON", "jsutils.resources"]
+}).as(function(i18n, jQuery, fileUtil, tempUtil, JSONPath, JSON, RESOURCEUTIL) {
     var STRINGS = {};
     return {
         _instance_: function() {
@@ -23,17 +23,16 @@ define({
                 }).promise();
             }
         },
-        getJSON : function(fileNameJson){
+        getJSON: function(fileNameJson) {
             var self = this;
-            return RESOURCEUTIL.getJSON(fileNameJson).done(function(resp){
+            return RESOURCEUTIL.getJSON(fileNameJson).done(function(resp) {
                 return self.add(resp);
             });
         },
         get: function(key) {
             if (is.String(key)) {
-                key = key.toLowerCase();
                 var keys = key.split(":");
-                var str = STRINGS[keys[0]] || "";
+                var str = STRINGS[keys[0].toLowerCase()] || "";
                 for (var i = 1; i < keys.length; i++) {
                     str = str.replace("$" + i, keys[i]);
                 }
